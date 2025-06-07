@@ -1,0 +1,133 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Pokémon</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <h1>The Pokémon Card Generator</h1>
+    <div class="controls">
+      <input type="number" id="count" placeholder="Enter number of Pokémon" min="1">
+      <select id="type"></select>
+      <button id="generate">Generate</button>
+    </div>
+    <div class="cards-container" id="cards"></div>
+  </div>
+
+  <script>
+    const typeSelect = document.getElementById("type");
+    const generateBtn = document.getElementById("generate");
+    const cardsContainer = document.getElementById("cards");
+    const countInput = document.getElementById("count");
+
+    // Fetch all types
+    fetch("https://pokeapi.co/api/v2/type")
+      .then(res => res.json())
+      .then(data => {
+        data.results.forEach(type => {
+          const option = document.createElement("option");
+          option.value = type.name;
+          option.textContent = type.name;
+          typeSelect.appendChild(option);
+        });
+      });
+
+    generateBtn.addEventListener("click", async () => {
+      const type = typeSelect.value;
+      const count = parseInt(countInput.value);
+
+      if (!type || !count) {
+        alert("Please select a type and enter a valid number");
+        return;
+      }
+
+      cardsContainer.innerHTML = "Loading...";
+
+      try {
+        const typeData = await fetch(`https://pokeapi.co/api/v2/type/${type}`).then(res => res.json());
+        const pokemons = typeData.pokemon.slice(0, count);
+
+        const promises = pokemons.map(pokeObj => fetch(pokeObj.pokemon.url).then(res => res.json()));
+        const results = await Promise.all(promises);
+
+        cardsContainer.innerHTML = "";
+
+        results.forEach(pokemon => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+            <h3>${pokemon.name}</h3>
+            <p>Type: ${pokemon.types.map(t => t.type.name).join(", ")}</p>
+          `;
+          cardsContainer.appendChild(card);
+        });
+      } catch (err) {
+        cardsContainer.innerHTML = "Failed to load data.";
+      }
+    });
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #222831;
+      color: #dfd0b8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .app {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      background: #948979;
+      color: #222831;
+      cursor: pointer;
+      
+    }
+
+    button:hover {
+      background: #dfd0b8;
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #393e46;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      color: #dfd0b8;
+    }
+
+    .card img {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</body>
+</html>

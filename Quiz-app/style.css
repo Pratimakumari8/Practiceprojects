@@ -1,0 +1,32 @@
+body {
+  background-color: rgb(34, 40, 49);  /* dark background */
+  font-family: 'Segoe UI', sans-serif;
+  color: rgb(223, 208, 184); /* main text color */
+}
+
+.quiz-container {
+  background-color: rgb(57, 62, 70);  /* card background */
+  border-radius: 12px;
+  padding: 30px;
+  width: 400px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+h2 {
+  color: rgb(223, 208, 184);  /* light header text */
+}
+
+button {
+  background-color: rgb(148, 137, 121); /* warm button */
+  color: rgb(34, 40, 49);  /* dark text on button */
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: rgb(223, 208, 184); /* hover lighter */
+  color: rgb(34, 40, 49);
+}
