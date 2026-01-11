@@ -7,7 +7,34 @@
     <link href="style.css" rel = "stylesheet"/>
 </head>
 <body>
-    
+    <div id = "container">
+        <h2>Custom Table</h2>
+        <div id="customtable">
+            <h3>Add item</h3>
+            <input id="name" type="text" placeholder="Enter Name">
+            <input id="category" type="text" placeholder="Enter Category">
+            <input id = "year" type = "number" placeholder="Enter year">
+            <button type="button" id="btn1">Add Item</button>
+        </div>
+        <div id="search">
+            <div id="box">
+            <h3>Search for Item...</h3>
+            <input id = "search" type="text" placeholder="Search for names.">
+            </div>
+            <div >
+                <table id="table">
+                    <tr class="titles">
+                        <th style="width: 5%">S.no</th>
+                        <th style="width: 30%">Name</th>
+                        <th style="width: 30%">Category</th>
+                        <th style="width: 10%">Year</th>
+                        <th style="width: 2%">Edit Entry</th>
+                        <th style="width: 2%">Delete Entry</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
     <script src = "script.js"></script>
 </body>
 </html>

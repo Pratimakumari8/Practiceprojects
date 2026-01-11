@@ -1,0 +1,78 @@
+body{
+    font-family : Arial, Helvetica, sans-serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#customtable{
+    background-color: rgb(247, 246, 246);
+     display: flexbox;
+    height: 100px;
+    box-shadow: 0 0 5px rgba(0,0, 0 , 0.2);
+    font-size: 16px;
+    margin: 0 1rem;
+    padding: 1rem;
+}
+#customtable input{
+    width: 25%;
+    margin: 1%;
+    font-size: 16px;
+    padding: 1%;
+    border: 1px solid #ddd;
+}
+#customtable button{
+    height: 30%;
+    cursor: pointer;
+    background-color: rgb(8, 192, 8);
+    border: green;
+    border-radius: 3px;
+    padding: 1%;
+    transition: background-color 0.3s ease-in-out;   
+}
+#customtable button:hover{
+    background-color: rgb(127, 225, 15);
+}
+#box{
+    margin-top: 50px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+#box input{
+    width:100%;
+    padding: 10px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+}
+#table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+}
+
+#table th,
+#table td {
+    text-align: left;
+    padding: 12px;
+}
+
+#table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+#table tr.titles {
+    background-color: lightgreen;
+}
+.zoom {
+    text-align: center;
+}
+
+.zoom:hover {
+    transform: scale(1.5);
+    color: rgb(255, 0, 0);
+}
